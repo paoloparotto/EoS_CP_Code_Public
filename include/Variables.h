@@ -55,7 +55,7 @@ char named2PdT2IsingPlusNoIsing3D[100],named2PdmuB2IsingPlusNoIsing3D[100],named
 // Name for thermodynamic quantities - Total + HRG.
 char namePressTotHRG3D[100],namedPdTTotHRG3D[100],namedPdmuBTotHRG3D[100],named2PdT2TotHRG3D[100],named2PdmuB2TotHRG3D[100],named2PdTdmuBTotHRG3D[100];
 // Name for thermodynamic quantities - Final (normalized).
-char namePressFinal3D[100],nameEnerDensFinal3D[100],nameBarDensFinal3D[100],nameEntrFinal3D[100], nameSpsoundFinal3D[100],nameChi2Final3D[100],nameChi4Final3D[100];
+char namePressFinal3D[100],nameEnerDensFinal3D[100],nameBarDensFinal3D[100],nameEntrFinal3D[100], nameSpsoundFinal3D[100],nameChi2Final3D[100];
 
 /* Dummy Variables for parameter input*/
 double v1,v2,v3,v4,v5,v6;
@@ -108,11 +108,11 @@ double g0,htilnum,htilprimenum,htilsecondnum,htilthirdnum,m1Th2,ggnum,ggprimenum
 
 /* These vectors are used to store the expansion coefficients of the pressure at different T's, 
 		as well as derivatives of the non-Ising one wrt T. */
-double *Chi0LatVec, *Chi2LatVec, *Chi4LatVec, *Chi6LatVec;
-double *Chi0IsingVec, *Chi2IsingVec, *Chi4IsingVec, *Chi6IsingVec;
-double *Chi0NoIsingVec, *Chi2NoIsingVec, *Chi4NoIsingVec, *Chi6NoIsingVec;
-double *dChi0NoIsingdTVec, *dChi2NoIsingdTVec, *dChi4NoIsingdTVec, *dChi6NoIsingdTVec;
-double *d2Chi0NoIsingdT2Vec, *d2Chi2NoIsingdT2Vec, *d2Chi4NoIsingdT2Vec, *d2Chi6NoIsingdT2Vec;
+double *Chi0LatVec, *Chi2LatVec, *Chi4LatVec;
+double *Chi0IsingVec, *Chi2IsingVec, *Chi4IsingVec;
+double *Chi0NoIsingVec, *Chi2NoIsingVec, *Chi4NoIsingVec;
+double *dChi0NoIsingdTVec, *dChi2NoIsingdTVec, *dChi4NoIsingdTVec;
+double *d2Chi0NoIsingdT2Vec, *d2Chi2NoIsingdT2Vec, *d2Chi4NoIsingdT2Vec;
 
 /* The variables are used to export the Chi's from the Ising model, and the 3D critical pressure. */
 double Chi0Ising, Chi2Ising, Chi4Ising, Pij, dPdTij, dPdmuBij, d2PdT2ij, d2PdmuB2ij, d2PdTdmuBij;
@@ -124,22 +124,22 @@ double **JJ;
 double **PressNoIsingMat,**dPressNoIsingdTMat,**d2PressNoIsingdT2Mat,**dPressNoIsingdmuBMat,**d2PressNoIsingdmuB2Mat,
 			**d2PressNoIsingdTdmuBMat;
 double **PressNoIsingFilterMat,**dPressNoIsingFilterdTMat,**d2PressNoIsingFilterdT2Mat,**dPressNoIsingFilterdmuBMat,
-			**d2PressNoIsingFilterdmuB2Mat,**d2PressNoIsingFilterdTdmuBMat,**d3PressNoIsingFilterdmuB3Mat,**d4PressNoIsingFilterdmuB4Mat;
+			**d2PressNoIsingFilterdmuB2Mat,**d2PressNoIsingFilterdTdmuBMat;
 double **PressIsingMat,**dPressIsingdTMat,**d2PressIsingdT2Mat,**dPressIsingdmuBMat,**d2PressIsingdmuB2Mat,
-			**d2PressIsingdTdmuBMat,**d3PressIsingdmuB3Mat,**d4PressIsingdmuB4Mat;
+			**d2PressIsingdTdmuBMat;
 double **PressTotMat,**dPressTotdTMat,**d2PressTotdT2Mat,**dPressTotdmuBMat,**d2PressTotdmuB2Mat,
-			**d2PressTotdTdmuBMat,**d3PressTotdmuB3Mat,**d4PressTotdmuB4Mat;
+			**d2PressTotdTdmuBMat;
 double **PressHRGMat,**dPressHRGdTMat,**d2PressHRGdT2Mat,**dPressHRGdmuBMat,**d2PressHRGdmuB2Mat,
-			**d2PressHRGdTdmuBMat,**d3PressHRGdmuB3Mat,**d4PressHRGdmuB4Mat;
+			**d2PressHRGdTdmuBMat;
 double **PressTotHRGMat,**dPressTotHRGdTMat,**d2PressTotHRGdT2Mat,**dPressTotHRGdmuBMat,**d2PressTotHRGdmuB2Mat,
-			**d2PressTotHRGdTdmuBMat,**d3PressTotHRGdmuB3Mat,**d4PressTotHRGdmuB4Mat;
+			**d2PressTotHRGdTdmuBMat;
 double **PressFinalMat,**dPdTMat,**dPdmuBMat,**d2PdT2Mat,**d2PdmuB2Mat,
 			**d2PdTdmuBMat, **EntropyFinalMat, **BarDensityFinalMat, **EnerDensityFinalMat, **SpSoundFinalMat,
-			**Chi2FinalMat, **Chi4FinalMat;
-double **PressLATonlyMat,**PressLATonlyFilterMat,**dPressLATonlydTMat,**dPressLATonlydmuBMat,**d2PressLATonlydT2Mat,**d2PressLATonlydmuB2Mat,
-			**d2PressLATonlydTdmuBMat, **d3PressLATonlydmuB3Mat, **d4PressLATonlydmuB4Mat;
-double **PressLATonlyNormMat, **EntropyLATonlyNormMat, **BarDensityLATonlyNormMat, **EnerDensityLATonlyNormMat, **SpSoundLATonlyNormMat,
-			**Chi2LATonlyNormMat, **Chi4LATonlyNormMat;
+			**Chi2FinalMat;
+double **PressLATonlyMat,**PressLATonlyFilterMat,**dPressLATonlydTMat,**dPressLATonlydmuBMat,**d2PressLATonlydT2Mat,
+      **d2PressLATonlydmuB2Mat, **d2PressLATonlydTdmuBMat;
+double **PressLATonlyNormMat, **EntropyLATonlyNormMat, **BarDensityLATonlyNormMat, **EnerDensityLATonlyNormMat, 
+			 **SpSoundLATonlyNormMat, **Chi2LATonlyNormMat;
 
 /* A Rank=3 tensor to store the coordinates. */
 double ***Coords;

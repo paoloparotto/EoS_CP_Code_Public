@@ -1,7 +1,7 @@
 /* Copyright (c) 2018, Paolo Parotto and Debora Mroczek, 
  * Department of Physics, University of Houston, Houston, TX 77204, US. */
 
-/* This main produces an EoS matching Lattice QCD at muB=0, and containing a critical 
+/* This main produces an EoS matching lattice QCD at muB=0, and containing a critical 
  * point in the 3D Ising universality class, in a parametrized form.
  * It allows for different choices of constraints on the shape of the critical 
  * line, which reduce the number of parameters. */ 
@@ -26,7 +26,6 @@
 // --------- DEFINE --------- //
 #define PI 3.141592653589
 #define N 2
-
 
 // The main
 int main(int argc, char *argv[])
@@ -80,8 +79,6 @@ int main(int argc, char *argv[])
 	d2PressNoIsingFilterdT2Mat=matrix(lowT,highT,0,highMU);	
 	d2PressNoIsingFilterdmuB2Mat=matrix(lowT,highT,0,highMU);	
 	d2PressNoIsingFilterdTdmuBMat=matrix(lowT,highT,0,highMU);
-	d3PressNoIsingFilterdmuB3Mat=matrix(lowT,highT,0,highMU); 
-	d4PressNoIsingFilterdmuB4Mat=matrix(lowT,highT,0,highMU);
 	// Ising
 	PressIsingMat=matrix(lowT,highT,0,highMU);				
 	dPressIsingdTMat=matrix(lowT,highT,0,highMU);				
@@ -89,8 +86,6 @@ int main(int argc, char *argv[])
 	d2PressIsingdT2Mat=matrix(lowT,highT,0,highMU);			
 	d2PressIsingdmuB2Mat=matrix(lowT,highT,0,highMU);			
 	d2PressIsingdTdmuBMat=matrix(lowT,highT,0,highMU);
-	d3PressIsingdmuB3Mat=matrix(lowT,highT,0,highMU);		
-	d4PressIsingdmuB4Mat=matrix(lowT,highT,0,highMU);
 	// Ising + NonIsing (after filtering)
 	PressTotMat=matrix(lowT,highT,0,highMU);				
 	dPressTotdTMat=matrix(lowT,highT,0,highMU);					
@@ -98,8 +93,6 @@ int main(int argc, char *argv[])
 	d2PressTotdT2Mat=matrix(lowT,highT,0,highMU);			
 	d2PressTotdmuB2Mat=matrix(lowT,highT,0,highMU);				
 	d2PressTotdTdmuBMat=matrix(lowT,highT,0,highMU);
-	d3PressTotdmuB3Mat=matrix(lowT,highT,0,highMU);			
-	d4PressTotdmuB4Mat=matrix(lowT,highT,0,highMU);	
 	// HRG
 	PressHRGMat=matrix(lowT,highT,0,highMU);				
 	dPressHRGdTMat=matrix(lowT,highT,0,highMU);					
@@ -107,8 +100,6 @@ int main(int argc, char *argv[])
 	d2PressHRGdT2Mat=matrix(lowT,highT,0,highMU);			
 	d2PressHRGdmuB2Mat=matrix(lowT,highT,0,highMU);				
 	d2PressHRGdTdmuBMat=matrix(lowT,highT,0,highMU);
-	d3PressHRGdmuB3Mat=matrix(lowT,highT,0,highMU);			
-	d4PressHRGdmuB4Mat=matrix(lowT,highT,0,highMU);	
 	// Total + HRG
 	PressTotHRGMat=matrix(lowT,highT,0,highMU);				
 	dPressTotHRGdTMat=matrix(lowT,highT,0,highMU);				
@@ -116,8 +107,6 @@ int main(int argc, char *argv[])
 	d2PressTotHRGdT2Mat=matrix(lowT,highT,0,highMU);		
 	d2PressTotHRGdmuB2Mat=matrix(lowT,highT,0,highMU);			
 	d2PressTotHRGdTdmuBMat=matrix(lowT,highT,0,highMU);
-	d3PressTotHRGdmuB3Mat=matrix(lowT,highT,0,highMU);		
-	d4PressTotHRGdmuB4Mat=matrix(lowT,highT,0,highMU);
 	// Final (normalized)
 	PressFinalMat=matrix(lowT,highT,0,highMU);				
 	EntropyFinalMat=matrix(lowT,highT,0,highMU);				
@@ -125,7 +114,6 @@ int main(int argc, char *argv[])
 	EnerDensityFinalMat=matrix(lowT,highT,0,highMU);		
 	SpSoundFinalMat=matrix(lowT,highT,0,highMU);				
 	Chi2FinalMat=matrix(lowT,highT,0,highMU);			
-	Chi4FinalMat=matrix(lowT,highT,0,highMU);
 	// If LAT only is chosen (not normalized)
 	PressLATonlyMat=matrix(lowT,highT,0,highMU);			
 	dPressLATonlydTMat=matrix(lowT,highT,0,highMU);				
@@ -133,8 +121,6 @@ int main(int argc, char *argv[])
 	d2PressLATonlydT2Mat=matrix(lowT,highT,0,highMU);		
 	d2PressLATonlydmuB2Mat=matrix(lowT,highT,0,highMU);			
 	d2PressLATonlydTdmuBMat=matrix(lowT,highT,0,highMU);
-	d3PressLATonlydmuB3Mat=matrix(lowT,highT,0,highMU);		
-	d4PressLATonlydmuB4Mat=matrix(lowT,highT,0,highMU);			
 	PressLATonlyFilterMat=matrix(lowT,highT,0,highMU);
 	// If LAT only is chosen (normalized)
 	PressLATonlyNormMat=matrix(lowT,highT,0,highMU);		
@@ -143,7 +129,6 @@ int main(int argc, char *argv[])
 	EnerDensityLATonlyNormMat=matrix(lowT,highT,0,highMU);	
 	SpSoundLATonlyNormMat=matrix(lowT,highT,0,highMU);			
 	Chi2LATonlyNormMat=matrix(lowT,highT,0,highMU);
-	Chi4LATonlyNormMat=matrix(lowT,highT,0,highMU);	
 }}}
 
  	/* Assign the name of the main folder where the program lives and 
@@ -241,8 +226,6 @@ int main(int argc, char *argv[])
 	// Wrt muB
 	deriv_matrix(PressLATonlyMat,dPressLATonlydmuBMat,2,lowT,highT,0,highMU,0);
 	deriv_matrix(dPressLATonlydmuBMat,d2PressLATonlydmuB2Mat,2,lowT,highT,0,highMU,1);
-	deriv_matrix(d2PressLATonlydmuB2Mat,d3PressLATonlydmuB3Mat,2,lowT,highT,0,highMU,0);
-	deriv_matrix(d3PressLATonlydmuB3Mat,d4PressLATonlydmuB4Mat,2,lowT,highT,0,highMU,1);
 	// Wrt T and muB
 	deriv_matrix(dPressLATonlydTMat,d2PressLATonlydTdmuBMat,2,lowT,highT,0,highMU,0);
 	
@@ -253,7 +236,6 @@ int main(int argc, char *argv[])
 	FILE *FilePressLATonlyNorm = fopen("PressLATonlyNorm3D.dat", "w");		FILE *FileEntrLATonlyNorm = fopen("EntrLATonlyNorm3D.dat", "w");
 	FILE *FileBarDensLATonlyNorm = fopen("BarDensLATonlyNorm3D.dat", "w");	FILE *FileEnerDensLATonlyNorm = fopen("EnerDensLATonlyNorm3D.dat", "w");
 	FILE *FileSpSoundLATonlyNorm = fopen("SpsoundLATonlyNorm3D.dat", "w");	FILE *FileChi2LATonlyNorm = fopen("Chi2LATonlyNorm3D.dat", "w");
-	FILE *FileChi4LATonlyNorm = fopen("Chi4LATonlyNorm3D.dat", "w");
 		
 	// Export.
 	for (i=lowT_out; i<=highT_out; i++) for(j=0;j<=highMU_out; j++){
@@ -270,7 +252,6 @@ int main(int argc, char *argv[])
    											*1.0/(d2PressLATonlydT2Mat[i][j]*d2PressLATonlydmuB2Mat[i][j]-d2PressLATonlydTdmuBMat[i][j]
   											*d2PressLATonlydTdmuBMat[i][j]);     								
    	Chi2LATonlyNormMat[i][j] = d2PressLATonlydmuB2Mat[i][j]/pow(Tval,2);
-   	Chi4LATonlyNormMat[i][j] = d4PressLATonlydmuB4Mat[i][j];
 
   	fprintf(FilePressLATonlyNorm,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, PressLATonlyNormMat[i][j]);
   	fprintf(FileEntrLATonlyNorm,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, EntropyLATonlyNormMat[i][j]);
@@ -278,12 +259,10 @@ int main(int argc, char *argv[])
   	fprintf(FileEnerDensLATonlyNorm,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, EnerDensityLATonlyNormMat[i][j]);
  	  fprintf(FileSpSoundLATonlyNorm,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, SpSoundLATonlyNormMat[i][j]);
 		fprintf(FileChi2LATonlyNorm,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, Chi2LATonlyNormMat[i][j]);
-		fprintf(FileChi4LATonlyNorm,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, Chi4LATonlyNormMat[i][j]);
   	}
 	// Close the files.
 	fclose(FilePressLATonlyNorm);		fclose(FileEntrLATonlyNorm);		fclose(FileBarDensLATonlyNorm);
 	fclose(FileEnerDensLATonlyNorm);	fclose(FileSpSoundLATonlyNorm);		fclose(FileChi2LATonlyNorm);	
-	fclose(FileChi4LATonlyNorm);
 
 	printf("The procedure is completed. Exiting.\n");
 
@@ -312,7 +291,6 @@ int main(int argc, char *argv[])
 	sprintf(namedPdmuBIsing3D, "dPdmuB_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(named2PdT2Ising3D, "d2PdT2_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(named2PdmuB2Ising3D, "d2PdmuB2_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
-	sprintf(named4PdmuB4Ising3D, "d4PdmuB4_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(named2PdTdmuBIsing3D, "d2PdTdmuB_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(namePressNoIsing3D, "Press_No_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(namedPdTNoIsing3D, "dPdT_No_Ising_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
@@ -338,7 +316,6 @@ int main(int argc, char *argv[])
 	sprintf(nameEnerDensFinal3D, "EnerDens_Final_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(nameSpsoundFinal3D, "SpSound_Final_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	sprintf(nameChi2Final3D, "Chi2_Final_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
-	sprintf(nameChi4Final3D, "Chi4_Final_%s_%d_%d_%d_%d_%d_%d_3D.dat",MODESTR,(int)TC,(int)muBC,(int)angle1,(int)angle2,(int) dTC,(int) dmuBC);
 	}}}
 
 	// Move into folder for output
@@ -442,8 +419,6 @@ int main(int argc, char *argv[])
 			d2PressIsingdT2Mat[i][j] = - d2GdT2ConmuB(Coords[i][k][1],Coords[i][k][2])*pow(TC,4);
 			d2PressIsingdmuB2Mat[i][j] = - d2GdmuB2ConT(Coords[i][k][1],Coords[i][k][2])*pow(TC,4);
 			d2PressIsingdTdmuBMat[i][j] = 0.0;
-			//d3PressIsingdmuB3Mat[i][j] = - d3GdmuB3ConT(Coords[i][k][1],Coords[i][k][2])*pow(TC,4);
-			//d4PressIsingdmuB4Mat[i][j] = - d4GdmuB4ConT(Coords[i][k][1],Coords[i][k][2])*pow(TC,4);
 		} else{
 	 		PressIsingMat[i][j] = - (G(Coords[i][k][1],Coords[i][k][2]) + G(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);
 	 		dPressIsingdTMat[i][j] = - (dGdTConmuB(Coords[i][k][1],Coords[i][k][2]) + dGdTConmuB(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);
@@ -451,8 +426,6 @@ int main(int argc, char *argv[])
 	 		d2PressIsingdT2Mat[i][j] = - (d2GdT2ConmuB(Coords[i][k][1],Coords[i][k][2]) + d2GdT2ConmuB(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);
 	 		d2PressIsingdmuB2Mat[i][j] = - (d2GdmuB2ConT(Coords[i][k][1],Coords[i][k][2]) + d2GdmuB2ConT(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);
 	 		d2PressIsingdTdmuBMat[i][j] = - (d2GdTdmuB(Coords[i][k][1],Coords[i][k][2]) - d2GdTdmuB(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);
-	 		//d3PressIsingdmuB3Mat[i][j] = - (d3GdmuB3ConT(Coords[i][k][1],Coords[i][k][2]) - d3GdmuB3ConT(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);	
-			//d4PressIsingdmuB4Mat[i][j] = - (d4GdmuB4ConT(Coords[i][k][1],Coords[i][k][2]) + d4GdmuB4ConT(Coords[i][k-2*j][1],Coords[i][k-2*j][2]))/2.0*pow(TC,4);	 			 			
  		}
 			
  		//fprintf(FilePressIsing,"%3.1f	%3.1f	%12.16f\n",(double) j,(double) i, PressIsingMat[i][j]);
@@ -461,11 +434,9 @@ int main(int argc, char *argv[])
  		//fprintf(Filed2PdT2Ising,"%3.1f	%3.1f	%12.16f\n",(double) j,(double) i, d2PressIsingdT2Mat[i][j]);
 		//fprintf(Filed2PdmuB2Ising,"%3.1f	%3.1f	%12.16f\n",(double) j,(double) i, d2PressIsingdmuB2Mat[i][j]);
  		//fprintf(Filed2PdTdmuBIsing,"%3.1f	%3.1f	%12.16f\n",(double) j,(double) i, d2PressIsingdTdmuBMat[i][j]);
- 		//fprintf(Filed4PdmuB4Ising,"%3.1f	%3.1f	%12.16f\n",(double) j,(double) i, d4PressIsingdmuB4Mat[i][j]);	 		
 	}
 	//fclose(FilePressIsing); fclose(FiledPdTIsing); fclose(FiledPdmuBIsing); 
 	//fclose(Filed2PdT2Ising); fclose(Filed2PdmuB2Ising);	fclose(Filed2PdTdmuBIsing);		
-	//fclose(Filed4PdmuB4Ising);
 }}}
 
 	// Remove coordinate file
@@ -545,8 +516,6 @@ int main(int argc, char *argv[])
 	//FILE *Filed2PdT2NoIsingFilter = fopen("NoIsingd2PdT2Filter.dat","w");				
 	//FILE *Filed2PdmuB2NoIsingFilter = fopen("NoIsingd2PdmuB2Filter.dat","w");
 	//FILE *Filed2PdTdmuBNoIsingFilter = fopen("NoIsingd2PdTdmuBFilter.dat","w");	
-	//FILE *Filed3PdmuB3NoIsingFilter = fopen("NoIsingd3PdmuB3Filter.dat","w");
-	//FILE *Filed4PdmuB4NoIsingFilter = fopen("NoIsingd4PdmuB4Filter.dat","w");
 
 	// Take all the needed derivatives
 	// Wrt T
@@ -555,8 +524,6 @@ int main(int argc, char *argv[])
 	// Wrt muB
 	deriv_matrix(PressNoIsingFilterMat,dPressNoIsingFilterdmuBMat,2,lowT,highT,0,highMU,0);
 	deriv_matrix(dPressNoIsingFilterdmuBMat,d2PressNoIsingFilterdmuB2Mat,2,lowT,highT,0,highMU,1);
-	deriv_matrix(d2PressNoIsingFilterdmuB2Mat,d3PressNoIsingFilterdmuB3Mat,2,lowT,highT,0,highMU,0);
-	deriv_matrix(d3PressNoIsingFilterdmuB3Mat,d4PressNoIsingFilterdmuB4Mat,2,lowT,highT,0,highMU,1);
 	// Wrt T and muB
 	deriv_matrix(dPressNoIsingFilterdTMat,d2PressNoIsingFilterdTdmuBMat,2,lowT,highT,0,highMU,0);
 }}}
@@ -584,8 +551,6 @@ int main(int argc, char *argv[])
    	d2PressTotdT2Mat[i][j] = d2PressIsingdT2Mat[i][j] + d2PressNoIsingFilterdT2Mat[i][j];
    	d2PressTotdmuB2Mat[i][j] = d2PressIsingdmuB2Mat[i][j] + d2PressNoIsingFilterdmuB2Mat[i][j];  		
    	d2PressTotdTdmuBMat[i][j] = d2PressIsingdTdmuBMat[i][j] + d2PressNoIsingFilterdTdmuBMat[i][j];   
-   	d3PressTotdmuB3Mat[i][j] = d3PressIsingdmuB3Mat[i][j] + d3PressNoIsingFilterdmuB3Mat[i][j];  		
-   	d4PressTotdmuB4Mat[i][j] = d4PressIsingdmuB4Mat[i][j] + d4PressNoIsingFilterdmuB4Mat[i][j];  		
 
    	//fprintf(FilePressTot,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, PressTotMat[i][j]);
  		//fprintf(FiledPdTIsingPlusNoIsing,"%3.1f	%3.1f	%12.16f\n",muBval,Tval,dPressTotdTMat[i][j]);
@@ -635,8 +600,6 @@ int main(int argc, char *argv[])
 	// Wrt muB
 	deriv_matrix(PressHRGMat,dPressHRGdmuBMat,2,lowT,highT,0,highMU,0);
 	deriv_matrix(dPressHRGdmuBMat,d2PressHRGdmuB2Mat,2,lowT,highT,0,highMU,1);
-	deriv_matrix(d2PressHRGdmuB2Mat,d3PressHRGdmuB3Mat,2,lowT,highT,0,highMU,0);
-	deriv_matrix(d3PressHRGdmuB3Mat,d4PressHRGdmuB4Mat,2,lowT,highT,0,highMU,1);
 	// Wrt T and muB
 	deriv_matrix(dPressHRGdTMat,d2PressHRGdTdmuBMat,2,lowT,highT,0,highMU,0);
 	}}}
@@ -717,38 +680,6 @@ int main(int argc, char *argv[])
                                  	- PressHRGMat[i][j]*pow(cosh(Targum),-2)/pow(deltaT,2)
                                  		*tanh(Targum)*(2*kappa/T0*muBval);    
 
-		// Tanh merging is not done when considering the 4th order derivative
-		d4PressTotHRGdmuB4Mat[i][j] = d4PressTotdmuB4Mat[i][j];
-    
-		/* Chi4 HRG merging */
-		{{{	
-		/*		if(Targum >= 4.5)	 	d4PressTotHRGdmuB4Mat[i][j] = d4PressTotdmuB4Mat[i][j];
-        	if(Targum <= -4.5)		d4PressTotHRGdmuB4Mat[i][j] = d4PressHRGdmuB4Mat[i][j];
-  				else 					d4PressTotHRGdmuB4Mat[i][j] = d4PressTotdmuB4Mat[i][j]*0.5*(1.0 + tanh(Targum))
-            								+ d4PressHRGdmuB4Mat[i][j]*0.5*(1.0 - tanh(Targum))
-            								- d3PressTotdmuB3Mat[i][j]*4.0/deltaT*(kappa/T0*muBval)*pow(cosh(Targum),-2) 
-            								+ d3PressHRGdmuB3Mat[i][j]*4.0/deltaT*(kappa/T0*muBval)*pow(cosh(Targum),-2)
-            								- d2PressTotdmuB2Mat[i][j]*6.0*kappa/(deltaT*T0)*pow(cosh(Targum),-2)
-            									*(1.0 + 4.0*kappa/(deltaT*T0)*muBval*muBval*tanh(Targum))
-            								+ d2PressHRGdmuB2Mat[i][j]*6.0*kappa/(deltaT*T0)*pow(cosh(Targum),-2)
-            									*(1.0 + 4.0*kappa/(deltaT*T0)*muBval*muBval*tanh(Targum))
-            								- dPressTotdmuBMat[i][j]*16.0*kappa/(deltaT*T0)*kappa/(deltaT*T0)
-            									*muBval*pow(cosh(Targum),-2)*(- 2.0*kappa/(deltaT*T0)*muBval*muBval*pow(cosh(Targum),-2)
-            										+ 3.0*tanh(Targum) + 4.0*kappa/(deltaT*T0)*muBval*muBval*pow(tanh(Targum),2))  
-            								+ dPressHRGdmuBMat[i][j]*16.0*kappa/(deltaT*T0)*kappa/(deltaT*T0)
-            									*muBval*pow(cosh(Targum),-2)*(- 2.0*kappa/(deltaT*T0)*muBval*muBval*pow(cosh(Targum),-2)
-            										+ 3.0*tanh(Targum) + 4.0*kappa/(deltaT*T0)*muBval*muBval*pow(tanh(Targum),2))
-            								- PressTotMat[i][j]*kappa/(deltaT*T0)*kappa/(deltaT*T0)*pow(cosh(Targum),-2)
-            									*(- 48.0*kappa/(deltaT*T0)*pow(muBval,2)*pow(cosh(Targum),-2) 
-            										+ 12.0*tanh(Targum) - 128.0*pow(kappa/(deltaT*T0),2)*pow(muBval,4)*pow(cosh(Targum),-2)*tanh(Targum)
-            										+ 96.0*kappa/(deltaT*T0)*pow(muBval,2)*pow(tanh(Targum),2)
-            										+ 64.0*pow(kappa/(deltaT*T0),2)*pow(muBval,4)*pow(tanh(Targum),3))   
-            								+ PressHRGMat[i][j]*kappa/(deltaT*T0)*kappa/(deltaT*T0)*pow(cosh(Targum),-2)
-            									*(- 48.0*kappa/(deltaT*T0)*pow(muBval,2)*pow(cosh(Targum),-2) 
-            										+ 12.0*tanh(Targum) - 128.0*pow(kappa/(deltaT*T0),2)*pow(muBval,4)*pow(cosh(Targum),-2)*tanh(Targum)
-            										+ 96.0*kappa/(deltaT*T0)*pow(muBval,2)*pow(tanh(Targum),2)
-            										+ 64.0*pow(kappa/(deltaT*T0),2)*pow(muBval,4)*pow(tanh(Targum),3));       */                 			
-		}}}
 
 		/* Output is disabled now */
 		{{{
@@ -778,7 +709,6 @@ int main(int argc, char *argv[])
 	FILE *FilePressFinal = fopen(namePressFinal3D, "w");			FILE *FileEntrFinal = fopen(nameEntrFinal3D, "w");
 	FILE *FileBarDensFinal = fopen(nameBarDensFinal3D, "w");	FILE *FileEnerDensFinal = fopen(nameEnerDensFinal3D, "w");
 	FILE *FileSpSoundFinal = fopen(nameSpsoundFinal3D, "w");	FILE *FileChi2Final = fopen(nameChi2Final3D, "w");
-	FILE *FileChi4Final = fopen(nameChi4Final3D, "w");
 	for (i=lowT_out; i<=highT_out; i++) for(j=0;j<=highMU_out; j++){
 		Tval = (double) i; muBval = (double) j;
 
@@ -794,7 +724,6 @@ int main(int argc, char *argv[])
    													*1.0/(d2PressTotHRGdT2Mat[i][j]*d2PressTotHRGdmuB2Mat[i][j]
 																-d2PressTotHRGdTdmuBMat[i][j]*d2PressTotHRGdTdmuBMat[i][j]);
     Chi2FinalMat[i][j] = d2PressTotHRGdmuB2Mat[i][j]/pow(Tval,2);
-    Chi4FinalMat[i][j] = d4PressTotHRGdmuB4Mat[i][j];
 
 		fprintf(FilePressFinal,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, PressFinalMat[i][j]);
  		fprintf(FileEntrFinal,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, EntropyFinalMat[i][j]);
@@ -802,11 +731,9 @@ int main(int argc, char *argv[])
  		fprintf(FileEnerDensFinal,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, EnerDensityFinalMat[i][j]);
 	 	fprintf(FileSpSoundFinal,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, SpSoundFinalMat[i][j]);
 		fprintf(FileChi2Final,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, Chi2FinalMat[i][j]);
- 		fprintf(FileChi4Final,"%3.16f	%3.1f	%12.16f \n", muBval, Tval, Chi4FinalMat[i][j]);
  	}
 	fclose(FilePressFinal);			fclose(FileEntrFinal);			fclose(FileBarDensFinal);
-	fclose(FileEnerDensFinal);	fclose(FileSpSoundFinal);		
-	fclose(FileChi2Final);			fclose(FileChi4Final);
+	fclose(FileEnerDensFinal);	fclose(FileSpSoundFinal);		fclose(FileChi2Final);			
 	}}}
 }}}	
 	printf("\nProcedure completed.\n");
@@ -838,11 +765,10 @@ int main(int argc, char *argv[])
 	/* For LAT-only mode */ 
 	free_matrix(PressLATonlyMat,lowT,highT,0,highMU);					free_matrix(PressLATonlyFilterMat,lowT,highT,0,highMU);		free_matrix(dPressLATonlydTMat,lowT,highT,0,highMU);		
 	free_matrix(dPressLATonlydmuBMat,lowT,highT,0,highMU);		free_matrix(d2PressLATonlydT2Mat,lowT,highT,0,highMU);		free_matrix(d2PressLATonlydmuB2Mat,lowT,highT,0,highMU);	
-	free_matrix(d2PressLATonlydTdmuBMat,lowT,highT,0,highMU);	free_matrix(d3PressLATonlydmuB3Mat,lowT,highT,0,highMU);	free_matrix(d4PressLATonlydmuB4Mat,lowT,highT,0,highMU);
-  /* For LAT-only mode, normalized */
+	free_matrix(d2PressLATonlydTdmuBMat,lowT,highT,0,highMU);	  
+	/* For LAT-only mode, normalized */
 	free_matrix(PressLATonlyNormMat,lowT,highT,0,highMU);				free_matrix(EntropyLATonlyNormMat,lowT,highT,0,highMU);		free_matrix(BarDensityLATonlyNormMat,lowT,highT,0,highMU);
 	free_matrix(EnerDensityLATonlyNormMat,lowT,highT,0,highMU);	free_matrix(SpSoundLATonlyNormMat,lowT,highT,0,highMU);		free_matrix(Chi2LATonlyNormMat,lowT,highT,0,highMU);
-	free_matrix(Chi4LATonlyNormMat,lowT,highT,0,highMU);
   /* Ising */ 
 	free_matrix(PressNoIsingMat,lowT,highT,0,highMU);				free_matrix(dPressNoIsingdTMat,lowT,highT,0,highMU);			free_matrix(dPressNoIsingdmuBMat,lowT,highT,0,highMU);
 	free_matrix(d2PressNoIsingdT2Mat,lowT,highT,0,highMU);	free_matrix(d2PressNoIsingdmuB2Mat,lowT,highT,0,highMU);	free_matrix(d2PressNoIsingdTdmuBMat,lowT,highT,0,highMU);
@@ -850,27 +776,21 @@ int main(int argc, char *argv[])
 	free_matrix(PressNoIsingFilterMat,lowT,highT,0,highMU);				free_matrix(dPressNoIsingFilterdTMat,lowT,highT,0,highMU);		
 	free_matrix(dPressNoIsingFilterdmuBMat,lowT,highT,0,highMU);
 	free_matrix(d2PressNoIsingFilterdT2Mat,lowT,highT,0,highMU);	free_matrix(d2PressNoIsingFilterdmuB2Mat,lowT,highT,0,highMU);	free_matrix(d2PressNoIsingFilterdTdmuBMat,lowT,highT,0,highMU);
-	free_matrix(d3PressNoIsingFilterdmuB3Mat,lowT,highT,0,highMU);	free_matrix(d4PressNoIsingFilterdmuB4Mat,lowT,highT,0,highMU);
   /* Isig */
 	free_matrix(PressIsingMat,lowT,highT,0,highMU);			    free_matrix(dPressIsingdTMat,lowT,highT,0,highMU);			free_matrix(dPressIsingdmuBMat,lowT,highT,0,highMU);
 	free_matrix(d2PressIsingdT2Mat,lowT,highT,0,highMU);		free_matrix(d2PressIsingdmuB2Mat,lowT,highT,0,highMU);		free_matrix(d2PressIsingdTdmuBMat,lowT,highT,0,highMU);
-	free_matrix(d3PressIsingdmuB3Mat,lowT,highT,0,highMU);	    free_matrix(d4PressIsingdmuB4Mat,lowT,highT,0,highMU);
   /* Total */
 	free_matrix(PressTotMat,lowT,highT,0,highMU);			    free_matrix(dPressTotdTMat,lowT,highT,0,highMU);			free_matrix(dPressTotdmuBMat,lowT,highT,0,highMU);
 	free_matrix(d2PressTotdT2Mat,lowT,highT,0,highMU);		    free_matrix(d2PressTotdmuB2Mat,lowT,highT,0,highMU);		free_matrix(d2PressTotdTdmuBMat,lowT,highT,0,highMU);
-	free_matrix(d3PressTotdmuB3Mat,lowT,highT,0,highMU);		free_matrix(d4PressTotdmuB4Mat,lowT,highT,0,highMU);
   /* HRG */
 	free_matrix(PressHRGMat,lowT,highT,0,highMU);			    free_matrix(dPressHRGdTMat,lowT,highT,0,highMU);			free_matrix(dPressHRGdmuBMat,lowT,highT,0,highMU);
 	free_matrix(d2PressHRGdT2Mat,lowT,highT,0,highMU);		    free_matrix(d2PressHRGdmuB2Mat,lowT,highT,0,highMU);		free_matrix(d2PressHRGdTdmuBMat,lowT,highT,0,highMU);
-	free_matrix(d3PressHRGdmuB3Mat,lowT,highT,0,highMU);		free_matrix(d4PressHRGdmuB4Mat,lowT,highT,0,highMU);
   /* Total+HRG */
 	free_matrix(PressTotHRGMat,lowT,highT,0,highMU);		    free_matrix(dPressTotHRGdTMat,lowT,highT,0,highMU);			free_matrix(dPressTotHRGdmuBMat,lowT,highT,0,highMU);
 	free_matrix(d2PressTotHRGdT2Mat,lowT,highT,0,highMU);	    free_matrix(d2PressTotHRGdmuB2Mat,lowT,highT,0,highMU);		free_matrix(d2PressTotHRGdTdmuBMat,lowT,highT,0,highMU);
-	free_matrix(d3PressTotHRGdmuB3Mat,lowT,highT,0,highMU);	    free_matrix(d4PressTotHRGdmuB4Mat,lowT,highT,0,highMU);
 	/* FInal output */
 	free_matrix(PressFinalMat,lowT,highT,0,highMU);			    free_matrix(EntropyFinalMat,lowT,highT,0,highMU);			free_matrix(BarDensityFinalMat,lowT,highT,0,highMU);
 	free_matrix(EnerDensityFinalMat,lowT,highT,0,highMU);	    free_matrix(SpSoundFinalMat,lowT,highT,0,highMU);			free_matrix(Chi2FinalMat,lowT,highT,0,highMU);	
-	free_matrix(Chi4FinalMat,lowT,highT,0,highMU);
 }}}
 
   /* End */

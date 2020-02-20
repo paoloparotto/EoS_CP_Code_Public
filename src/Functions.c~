@@ -113,11 +113,11 @@ void Jacobian (double **JJ, double dTC, double dmuBC, double angle1, double angl
 
 // --------- CHI0 --------------- //
 double G(double R, double Theta){
-
+	{{{
 	gg0Num = c0 + c1*(1-Theta*Theta) + c2*(1-Theta*Theta)*(1-Theta*Theta) + 
   			c3*(1-Theta*Theta)*(1-Theta*Theta)*(1-Theta*Theta);
 	htil0Num = Theta + A*Theta*Theta*Theta + B*Theta*Theta*Theta*Theta*Theta;
-
+	}}}
 	return h0*M0*pow(R,2.0-alpha)*(gg0Num - Theta*htil0Num);
 }
 
@@ -291,9 +291,8 @@ double d2GdmuB2ConT(double R, double Theta){
 }
 
 // --------- CHI2 WRT T --------- //
-{{{
 double d2GdT2ConmuB(double R, double Theta){
-
+	{{{
   // gg, htil and derivatives
   gg0Num = c0 + c1*(1-Theta*Theta) + c2*(1-Theta*Theta)*(1-Theta*Theta) + 
         c3*(1-Theta*Theta)*(1-Theta*Theta)*(1-Theta*Theta);
@@ -369,17 +368,15 @@ double d2GdT2ConmuB(double R, double Theta){
       + d2GdTheta2Num*dThetadhConrNum*dThetadrConhNum 
       + d2GdRdThetaNum*(dRdhConrNum*dThetadrConhNum + dRdrConhNum*dThetadhConrNum)
       + dGdRNum*d2RdrdhNum + dGdThetaNum*d2ThetadrdhNum;
-
+	}}}
   // Finally, derivative of G wrt muB
   return d2Gdr2ConhNum*drdT*drdT + d2Gdh2ConrNum*dhdT*dhdT 
       + 2*d2GdrdhNum*drdT*dhdT;
 }
-}}}
 
 // --------- CHI2 WRT T,MU ------ //
-{{{
 double d2GdTdmuB(double R, double Theta){
-
+	{{{
   // gg, htil and derivatives
   gg0Num = c0 + c1*(1-Theta*Theta) + c2*(1-Theta*Theta)*(1-Theta*Theta) + 
         c3*(1-Theta*Theta)*(1-Theta*Theta)*(1-Theta*Theta);
@@ -455,17 +452,15 @@ double d2GdTdmuB(double R, double Theta){
       + d2GdTheta2Num*dThetadhConrNum*dThetadrConhNum 
       + d2GdRdThetaNum*(dRdhConrNum*dThetadrConhNum + dRdrConhNum*dThetadhConrNum)
       + dGdRNum*d2RdrdhNum + dGdThetaNum*d2ThetadrdhNum;
-
+	}}}
   // Finally, derivative of G wrt muB
   return d2Gdr2ConhNum*drdT*drdmuB + d2Gdh2ConrNum*dhdT*dhdmuB 
       + d2GdrdhNum*(drdT*dhdmuB + drdmuB*dhdT);
 }
-}}}
 
 // --------- CHI3 WRT MU -------- //
-{{{
 double d3GdmuB3ConT(double R, double Th){
-
+	{{{
   // gg, htil and derivatives
   g0 = h0*M0;
   htilnum = Th + A*pow(Th,3) + B*pow(Th,5);
@@ -1075,17 +1070,16 @@ double d3GdmuB3ConT(double R, double Th){
               (h0*ggamma*m1Th2*htilthirdnum)/(2*Th)))/
           pow(beta*delta*h0*ggamma*htilnum + (h0*ggamma*m1Th2*htilprimenum)/(2*Th),2))/
        ((2*beta*delta*h0*tau*Th*htilnum)/m1Th2 + h0*tau*htilprimenum))/(-2*R*Th - (R*m1Th2*htilprimenum)/(beta*delta*htilnum));
-
+	}}}
   // Finally, derivative of G wrt muB
   return d3Gdr3ConhNum*drdmuB*drdmuB*drdmuB + d3Gdh3ConrNum*dhdmuB*dhdmuB*dhdmuB 
       + 3*d3Gdr2dhNum*drdmuB*drdmuB*dhdmuB + 3*d3Gdrdh2Num*drdmuB*dhdmuB*dhdmuB;
 }
-}}}
+
 
 // --------- CHI4 WRT MU -------- //
-{{{
 double d4GdmuB4ConT(double R, double Th){
-
+	{{{
   g0 = h0*M0;
   htilnum = Th + A*pow(Th,3) + B*pow(Th,5);
   htilprimenum = 1 + 3*A*pow(Th,2) + 5*B*pow(Th,4);
@@ -17415,9 +17409,9 @@ double d4GdmuB4ConT(double R, double Th){
            /pow(-2*R*Th - (R*(m1Th2)*(htilprimenum))/
              (beta*delta*(htilnum)),2))/
        (m1Th2 + (2*beta*delta*Th*(htilnum))/(htilprimenum)));
-
+	}}}
 }
-}}}
+
 
 /* For gaussian filtering */
 double GausFunc (double x, double y, double sigmax, double sigmay){

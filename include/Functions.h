@@ -23,8 +23,6 @@ double d2GdT2ConmuB (double R, double Theta);
 
 double d2GdTdmuB (double R, double Theta);
 
-double d3GdmuB3ConT (double R, double Theta);
-
 double d4GdmuB4ConT (double R, double Theta);
 
 double GausFunc (double x, double y, double sigmax, double sigmay);
